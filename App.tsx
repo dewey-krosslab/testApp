@@ -8,6 +8,7 @@
  * @format
  */
 
+import './global';
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import Caver from 'caver-js';

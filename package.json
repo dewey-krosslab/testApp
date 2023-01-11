@@ -3,17 +3,30 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "reset": "yarn --reset-cache && rm -fr $TMPDIR/react-* && rm -rf $TMPDIR/haste-* && rm -rf $TMPDIR/metro-* && watchman watch-del-all && rm -rf node_modules && rm -rf ios/build && yarn install",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "postinstall": "rn-nodeify --install fs,dgram,process,path,console,crypto,vm,stream,buffer,events,assert --hack"
   },
   "dependencies": {
     "caver-js": "^1.10.1",
+    "events": "^1.1.1",
     "ipfs-http-client": "^59.0.0",
+    "node-libs-browser": "^2.2.1",
+    "path-browserify": "^0.0.0",
     "react": "18.1.0",
-    "react-native": "0.70.6"
+    "react-native": "0.70.6",
+    "react-native-crypto": "^2.2.0",
+    "react-native-level-fs": "^3.0.1",
+    "react-native-randombytes": "^3.6.1",
+    "react-native-udp": "^4.1.6",
+    "readable-stream": "^1.0.33",
+    "rn-nodeify": "^10.3.0",
+    "stream-browserify": "^1.0.0",
+    "vm-browserify": "^0.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -26,7 +39,9 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
+    "babel-cli": "^6.26.0",
     "babel-jest": "^26.6.3",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "0.72.3",
@@ -43,5 +58,33 @@
       "json",
       "node"
     ]
+  },
+  "react-native": {
+    "console": "console-browserify",
+    "crypto": "react-native-crypto",
+    "path": "path-browserify",
+    "fs": "react-native-level-fs",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "dgram": "react-native-udp",
+    "stream": "stream-browserify",
+    "vm": "vm-browserify"
+  },
+  "browser": {
+    "console": "console-browserify",
+    "crypto": "react-native-crypto",
+    "path": "path-browserify",
+    "fs": "react-native-level-fs",
+    "_stream_transform": "readable-stream/transform",
+    "_stream_readable": "readable-stream/readable",
+    "_stream_writable": "readable-stream/writable",
+    "_stream_duplex": "readable-stream/duplex",
+    "_stream_passthrough": "readable-stream/passthrough",
+    "dgram": "react-native-udp",
+    "stream": "stream-browserify",
+    "vm": "vm-browserify"
   }
 }
